@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chat demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <p class="intro">A simple chat demo with Firebase. Code on <a href="https://github.com/haroenv/firebase-chat-demo">GitHub</a></p>
+  <div class="messages" id="messages">
+  </div>
+  <form class="input" id="input">
+    <input id="message" name="message" class="input--item input--item__field" type="text" placeholder="Enter a message">
+    <input class="input--item input--item__button" type="submit" value="send">
+  </form>
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

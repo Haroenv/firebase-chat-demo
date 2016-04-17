@@ -1,0 +1,125 @@
+---
+---
+$font: -apple-system,sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.login {
+  margin: 2em;
+  align-items: center;
+}
+
+.intro {
+  background-color: lightgrey;
+  margin: 0;
+  padding: .3em;
+  height: 4vh;
+}
+
+.messages {
+  flex-grow: 1;
+  max-height: 91vh;
+  overflow: scroll;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+  &--item {
+    &__image {
+      height: 2em;
+      width: 2em;
+      margin: 1em;
+      border-radius: 100%;
+    }
+    &__text {
+      flex-grow: 1;
+    }
+    &__time {
+      color: grey;
+      font-style: italic;
+      margin: .2em;
+    }
+  }
+}
+
+.input {
+  min-height: 5vh;
+  display: flex;
+  width: 100%;
+  &--item {
+    margin: 0;
+    border: none;
+    font-family: $font;
+    font-size: .8em;
+    &__field {
+      flex-grow: 1;
+      border-top: 1px solid lightgrey;
+    }
+    &__button {
+      background-color: lightgrey;
+    }
+  }
+}
+
+#login {
+  background-color: #3b5998;
+  color: white;
+  font-size: 1em;
+  width: 15em;
+  border: none;
+  padding: .2em;
+  border-radius: .2em;
+
+  &:active {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+  }
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+
+.github-corner svg {
+  fill:lightgrey;
+  color:#fff;
+  position: absolute;
+  top: 0;
+  border: 0;
+  right: 0;
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+}
