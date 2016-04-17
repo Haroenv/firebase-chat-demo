@@ -85,6 +85,10 @@ body {
     border: none;
     font-family: $font;
     font-size: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: none;
     &__field {
       -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
@@ -99,12 +103,6 @@ body {
       background-color: lightgrey;
     }
   }
-}
-
-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 
 #login {
