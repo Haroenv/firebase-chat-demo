@@ -1,12 +1,20 @@
 var base = new Firebase('https://french-demo.firebaseio.com');
 
 var auth = base.getAuth();
+
 if (auth) {
   console.log('logged in with: '+auth.uid);
 } else {
-  console.warn('not logged in');
   location.href = 'login.html';
 }
+
+base.onAuth(function(authData){
+  if (authData) {
+    console.log('logged in with: '+auth.uid);
+  } else {
+    location.href = 'login.html';
+  }
+});
 
 // HTML Escape helper utility
 var util = (function() {
@@ -67,8 +75,8 @@ document.getElementById('input').addEventListener('submit', function(e) {
   base.child('messages').push({
     time: new Date().getTime(),
     user: {
-      name: 'Haroen Viaene',
-      img: 'https://lh6.googleusercontent.com/-K3zTbtIokhQ/AAAAAAAAAAI/AAAAAAAABp8/XW4ywobvmdM/photo.jpg?sz=30'
+      name: auth.facebook.displayName,
+      img: auth.facebook.profileImageURL
     },
     message: document.getElementById('message').value
   });
@@ -84,11 +92,16 @@ var add = function(data) {
   var datetime = date.toISOString();
   var hours = date.getHours();
   var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-  document.getElementById('messages').innerHTML += html `<div class="message">
+  var m = document.createElement('div');
+  m.className = 'message';
+  m.innerHTML = html`
   <img src="${image}" alt="${name}" class="message--item message--item__image">
   <p class="message--item message--item__text">${message}</p>
-  <time datetime="${datetime}" class="message--item message--item__time">${hours}:${minutes}</time>
-  </div>`;
+  <time datetime="${datetime}" class="message--item message--item__time">${hours}:${minutes}</time>`;
+  document.getElementById('messages').appendChild(m);
+  m.scrollIntoView({
+    behaviour: 'smooth'
+  });
 }
 
 base.child('messages').limitToLast(10).on('child_added', function(snap) {
