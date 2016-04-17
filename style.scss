@@ -50,11 +50,13 @@ body {
   align-items: center;
   border-bottom: 1px solid lightgrey;
   &--item {
+
     &__image {
       height: 2em;
       width: 2em;
       margin: 1em;
       border-radius: 100%;
+      flex-shrink: 0;
     }
     &__text {
       -webkit-flex-grow: 1;
@@ -65,6 +67,7 @@ body {
       color: grey;
       font-style: italic;
       margin: .2em;
+      flex-shrink: 0;
     }
   }
 }
@@ -85,6 +88,10 @@ body {
       -ms-flex-positive: 1;
       flex-grow: 1;
       border-top: 1px solid lightgrey;
+
+      &:active,&:focus {
+        outline: none;
+      }
     }
     &__button {
       background-color: lightgrey;
