@@ -8,7 +8,11 @@ $font: -apple-system,sans-serif;
 
 body {
   font-family: $font;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
@@ -17,6 +21,8 @@ body {
 
 .login {
   margin: 2em;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -28,13 +34,19 @@ body {
 }
 
 .messages {
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   max-height: 91vh;
   overflow: scroll;
 }
 
 .message {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
   border-bottom: 1px solid lightgrey;
   &--item {
@@ -45,6 +57,8 @@ body {
       border-radius: 100%;
     }
     &__text {
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
       flex-grow: 1;
     }
     &__time {
@@ -57,6 +71,8 @@ body {
 
 .input {
   min-height: 5vh;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   &--item {
@@ -65,6 +81,8 @@ body {
     font-family: $font;
     font-size: .8em;
     &__field {
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
       flex-grow: 1;
       border-top: 1px solid lightgrey;
     }
@@ -72,6 +90,12 @@ body {
       background-color: lightgrey;
     }
   }
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 #login {
@@ -89,6 +113,7 @@ body {
 }
 
 .github-corner:hover .octo-arm {
+  -webkit-animation: octocat-wave 560ms ease-in-out;
   animation: octocat-wave 560ms ease-in-out
 }
 
@@ -101,26 +126,49 @@ body {
   right: 0;
 }
 
-@keyframes octocat-wave {
+@-webkit-keyframes octocat-wave {
   0%,
   100% {
+    -webkit-transform: rotate(0);
     transform: rotate(0)
   }
   20%,
   60% {
+    -webkit-transform: rotate(-25deg);
     transform: rotate(-25deg)
   }
   40%,
   80% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg)
+  }
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+  }
+  20%,
+  60% {
+    -webkit-transform: rotate(-25deg);
+    transform: rotate(-25deg)
+  }
+  40%,
+  80% {
+    -webkit-transform: rotate(10deg);
     transform: rotate(10deg)
   }
 }
 
 @media (max-width:500px) {
   .github-corner:hover .octo-arm {
+    -webkit-animation: none;
     animation: none
   }
   .github-corner .octo-arm {
+    -webkit-animation: octocat-wave 560ms ease-in-out;
     animation: octocat-wave 560ms ease-in-out
   }
 }
