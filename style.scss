@@ -79,11 +79,12 @@ body {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+
   &--item {
     margin: 0;
     border: none;
     font-family: $font;
-    font-size: .8em;
+    font-size: 1rem;
     &__field {
       -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
