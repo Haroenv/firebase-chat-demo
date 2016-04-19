@@ -79,7 +79,7 @@ document.getElementById('input').addEventListener('submit', function(e) {
     },
     message: document.getElementById('message').value
   });
-  document.getElementById('message').value = '';
+  e.target.reset();
 });
 
 var add = function(data) {
