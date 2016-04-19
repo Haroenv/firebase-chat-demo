@@ -65,7 +65,6 @@ function html(pieces) {
   for (var i = 0; i < substitutions.length; ++i) {
     result += util.escape(substitutions[i]) + pieces[i + 1];
   }
-
   return result;
 }
 
