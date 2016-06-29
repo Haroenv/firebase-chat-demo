@@ -82,7 +82,7 @@ document.getElementById('input').addEventListener('submit', function(e) {
   e.target.reset();
 });
 
-var add = function(data) {
+function add(data) {
   var image, name, message, datetime, hours, minutes;
   var date = new Date(data.time);
   var image = data.user.img;
