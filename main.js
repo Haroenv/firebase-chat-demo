@@ -104,9 +104,11 @@ function add(data) {
   });
 }
 
-base.child('messages').limitToLast(10).on('child_added', function(snap) {
-  add(snap.val());
-});
+base.child('messages')
+  .limitToLast(10)
+  .on('child_added', function(snap) {
+    add(snap.val());
+  });
 
 document.getElementById('logout').addEventListener('click',function(){
   firebase.auth().signOut().then(function() {
