@@ -1,33 +1,35 @@
-var base = new Firebase('https://french-demo.firebaseio.com');
+firebase.initializeApp({
+  apiKey: "AIzaSyDZ922NLoAuIOfqrMCDMkWwSRSU0ejSoyA",
+  authDomain: "french-demo.firebaseapp.com",
+  databaseURL: "https://french-demo.firebaseio.com",
+});
 
-var auth = base.getAuth();
-
-if (auth) {
-  location.href = '.';
-} else {
-  console.log('not logged in');
-}
-
-base.onAuth(function(authData){
-  if (authData) {
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
     location.href = '.';
   } else {
-    console.log('not logged in');
+    // No user is signed in.
+    console.log('not yet logged in');
   }
 });
 
-var auth = function(service) {
-  console.log('logging in');
-  base.authWithOAuthPopup(service, function(error, authData) {
-    if (error) {
-      console.warn('Login Failed!', error);
-    } else {
-      location.href = '.';
-    }
-  });
-};
+var provider = new firebase.auth.FacebookAuthProvider();
+provider.addScope('public_profile');
 
 document.getElementById('login').addEventListener('click',function(e){
   e.preventDefault();
-  auth('facebook');
+  firebase.auth().signInWithPopup(provider)
+    .then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+      console.log(result);
+      location.href = '.';
+    })
+    .catch(function(error) {
+      console.warn("error while signing in 😢",error);
+  });
 });

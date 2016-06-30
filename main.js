@@ -1,20 +1,22 @@
-var base = new Firebase('https://french-demo.firebaseio.com');
+firebase.initializeApp({
+  apiKey: "AIzaSyDZ922NLoAuIOfqrMCDMkWwSRSU0ejSoyA",
+  authDomain: "french-demo.firebaseapp.com",
+  databaseURL: "https://french-demo.firebaseio.com",
+});
 
-var auth = base.getAuth();
+var base = firebase.database().ref('/');
 
-if (auth) {
-  console.log('logged in with: '+auth.uid);
-} else {
-  location.href = 'login.html';
-}
 
-base.onAuth(function(authData){
-  if (authData) {
-    console.log('logged in with: '+auth.uid);
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log('logged in with',user);
   } else {
+    // No user is signed in.
     location.href = 'login.html';
   }
 });
+
 
 // HTML Escape helper utility
 var util = (function() {
@@ -74,8 +76,8 @@ document.getElementById('input').addEventListener('submit', function(e) {
   base.child('messages').push({
     time: new Date().getTime(),
     user: {
-      name: auth.facebook.displayName,
-      img: auth.facebook.profileImageURL
+      name: firebase.auth().currentUser.providerData[0].displayName,
+      img: firebase.auth().currentUser.providerData[0].photoURL
     },
     message: document.getElementById('message').value
   });
@@ -83,7 +85,6 @@ document.getElementById('input').addEventListener('submit', function(e) {
 });
 
 function add(data) {
-  var image, name, message, datetime, hours, minutes;
   var date = new Date(data.time);
   var image = data.user.img;
   var name = data.user.name;
@@ -94,7 +95,7 @@ function add(data) {
   var m = document.createElement('div');
   m.className = 'message';
   m.innerHTML = html`
-  <img src="${image}" alt="${name}" class="message--item message--item__image">
+  <img src="${image}" title="${name}" alt="${name}" class="message--item message--item__image">
   <p class="message--item message--item__text">${message}</p>
   <time datetime="${datetime}" class="message--item message--item__time">${hours}:${minutes}</time>`;
   document.getElementById('messages').appendChild(m);
@@ -105,4 +106,14 @@ function add(data) {
 
 base.child('messages').limitToLast(10).on('child_added', function(snap) {
   add(snap.val());
+});
+
+document.getElementById('logout').addEventListener('click',function(){
+  firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+    location.href = "login.html";
+  }, function(error) {
+    // An error happened.
+    alert('An error has occured while signing out. Try again.');
+  });
 });
