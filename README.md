@@ -6,6 +6,8 @@ Made as a demo for a [Presentation](https://haroen.me/presentations) by [Haroen 
 
 Online at [haroen.me/firebase-chat-demo](https://haroen.me/firebase-chat-demo).
 
+Also available is a Firebase 2 demo in that branch
+
 # License
 
-MIT
+Apache 2.0
