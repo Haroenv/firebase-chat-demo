@@ -19,7 +19,7 @@ provider.addScope('public_profile');
 
 document.getElementById('login').addEventListener('click',function(e){
   e.preventDefault();
-  firebase.auth().signInWithPopup(provider)
+  firebase.auth().signInWithRedirect(provider)
     .then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
